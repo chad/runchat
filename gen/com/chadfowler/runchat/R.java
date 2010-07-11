@@ -14,8 +14,8 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int dn=0x7f060000;
-        public static final int pl=0x7f060001;
+        public static final int dn=0x7f060001;
+        public static final int pl=0x7f060000;
     }
     public static final class layout {
         public static final int destination_number=0x7f030000;

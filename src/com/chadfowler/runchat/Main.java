@@ -11,6 +11,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,25 +48,31 @@ public class Main extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	  switch(item.getItemId()) {
 	  case R.id.dn:
+		  Log.i("a", "OMG dn");
 		  destinationNumberPicker();
 		  return true;
 	  case R.id.pl:
+		  Log.i("a", "OMG pl");
 		  phraseListPicker();
 		  return true;
 	  default:
+		  Log.i("a", "OMG WTF");
 		  return super.onOptionsItemSelected(item);
 	  }
 	}
 	private void phraseListPicker() {
-		// TODO Auto-generated method stub
-		
+		start(PhraseList.class);
 	}
 
 	private void destinationNumberPicker() {
-		Intent i = new Intent(getBaseContext(), DestinationNumberPicker.class);
-		
+		start(DestinationNumberPicker.class);
 	}
-
+    
+	private void start(Class klass) {
+		Intent i = new Intent(getBaseContext(), klass);
+		startActivity(i);
+	}
+	
 	private void createPhraseButtonsFromPreferences(LinearLayout layout,
 			SharedPreferences prefs, ArrayList<String> phraseKeys) {
 		for(String key : phraseKeys) {
