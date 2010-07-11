@@ -5,12 +5,16 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
@@ -30,6 +34,36 @@ public class Main extends Activity {
 		ArrayList<String> phraseKeys = getPhraseKeys(prefs);
 		createPhraseButtonsFromPreferences(layout, prefs, phraseKeys);
 		setContentView(layout);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.options_menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  switch(item.getItemId()) {
+	  case R.id.dn:
+		  destinationNumberPicker();
+		  return true;
+	  case R.id.pl:
+		  phraseListPicker();
+		  return true;
+	  default:
+		  return super.onOptionsItemSelected(item);
+	  }
+	}
+	private void phraseListPicker() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void destinationNumberPicker() {
+		Intent i = new Intent(getBaseContext(), DestinationNumberPicker.class);
+		
 	}
 
 	private void createPhraseButtonsFromPreferences(LinearLayout layout,
